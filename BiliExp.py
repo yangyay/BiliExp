@@ -62,7 +62,7 @@ def initlog(log_file: str, log_console: bool, log_stream: bool):
     '''初始化日志参数'''
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
-    formatter1 = logging.Formatter("[%(levelname)s]; %(message)s")
+    formatter1 = logging.Formatter("[%(levelname)s]: %(message)s")
     if log_console:
         console_handler = logging.StreamHandler(stream=sys.stdout) #输出到控制台
         console_handler.setFormatter(formatter1)
@@ -75,7 +75,7 @@ def initlog(log_file: str, log_console: bool, log_stream: bool):
         strio_handler.setFormatter(formatter2)
         logger.addHandler(strio_handler)
     if log_file:
-         file_handler = logging.FileHandler(log_file)#输出到日志文件
+         file_handler = logging.FileHandler(log_file, encoding='utf-8')#输出到日志文件
          file_handler.setFormatter(formatter1)
          logger.addHandler(file_handler)
 
